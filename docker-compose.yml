@@ -1,0 +1,14 @@
+services:
+  db:
+    image: mysql
+    container_name: mysql_pharmacy_crud
+    environment:
+      MYSQL_ROOT_PASSWORD: meds
+    ports:
+      - "3306:3306"
+    volumes:
+      - medicamentos_data:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+volumes:
+  medicamentos_data:
