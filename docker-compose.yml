@@ -1,14 +1,32 @@
+version: '3.8'
+
 services:
+  app:
+    build: .
+    container_name: pharmacy-app
+    depends_on:
+      - db
+    networks:
+      - pharmacy-network
+
   db:
-    image: mysql
-    container_name: mysql_pharmacy_crud
+    image: mysql:8
+    container_name: pharmacy-db
     environment:
       MYSQL_ROOT_PASSWORD: meds
+      MYSQL_DATABASE: estoque_farmacia
     ports:
       - "3306:3306"
     volumes:
       - medicamentos_data:/var/lib/mysql
-      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - pharmacy-network
+
 
 volumes:
   medicamentos_data:
+
+networks:
+  pharmacy-network:
+    driver: bridge

@@ -1,4 +1,4 @@
-package com.alanpmz.cli;
+package com.alanpmz;
 
 import com.alanpmz.service.SupplierService;
 import com.alanpmz.service.MedicineService;
@@ -6,7 +6,7 @@ import com.alanpmz.validator.InputValidator;
 
 import java.util.Scanner;
 
-public class AppCLI {
+public class Main {
 
     private static final Scanner SCANNER = new Scanner(System.in);
 
